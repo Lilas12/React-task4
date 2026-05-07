@@ -1,45 +1,46 @@
 import { useState } from 'react';
 import './Portfolio.css';
 
-const Portfolio  = () => {
-  const [filter,setFilter] = useState('ALL')
+const Portfolio = () => {
+  const [filter, setFilter] = useState('ALL');
 
+  // Listan ligger nu inuti komponenten så att den kan läsa av BASE_URL korrekt vid rendering
   const projects = [
     {
       id: 1,
       category: 'CODED',
       title: 'Project 1',
-      img: '/Project1.png'
+      img: `${import.meta.env.BASE_URL}Project1.png`
     },
     {
       id: 2,
       category: 'DESIGNED',
       title: 'Project 2',
-      img: '/Project2.png'
+      img: `${import.meta.env.BASE_URL}Project2.png`
     },
     {
       id: 3,
       category: 'CODED',
       title: 'Project 3',
-      img: '/Project3.png'
+      img: `${import.meta.env.BASE_URL}Project3.png`
     },
     {
       id: 4,
       category: 'DESIGNED',
       title: 'Project 4',
-      img: '/Project4.png'
+      img: `${import.meta.env.BASE_URL}Project4.png`
     },
     {
       id: 5,
       category: 'CODED',
       title: 'Project 5',
-      img: '/Project5.png'
+      img: `${import.meta.env.BASE_URL}Project5.png`
     },
     {
       id: 6,
       category: 'DESIGNED',
       title: 'Project 6',
-      img: '/Project6.png'
+      img: `${import.meta.env.BASE_URL}Project6.png`
     },
   ];
 
@@ -70,6 +71,7 @@ const Portfolio  = () => {
       <div className="portfolio-grid">
         {filteredProjects.map(project => (
           <div className="project-card" key={project.id}>
+            {/* Här används den dynamiska sökvägen */}
             <img src={project.img} alt={project.title} className="project-img" />
             <div className="project-overlay">
               <p className="project-cat">{project.category}</p>
