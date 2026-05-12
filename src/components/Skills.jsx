@@ -26,47 +26,50 @@ const Skills = () => {
     ]
   };
 
+  const renderSkillCards = (skills) => {
+    return skills.map((skill, index) => (
+      <div
+        className="skill-card"
+        key={skill.name}
+        data-aos="zoom-in"
+        data-aos-delay={index * 100}  förra
+      >
+        {skill.icon.startsWith('http') ? (
+          <img src={skill.icon} alt={skill.name} />
+        ) : (
+          <span className="flag-emoji">{skill.icon}</span>
+        )}
+        <p>{skill.name}</p>
+      </div>
+    ));
+  };
+
   return (
     <section className="skills-section" id="skills">
-      <div className="separator top-sep">
+      <div className="separator top-sep" data-aos="fade-up">
         <span className="sep-line"></span>
         <span className="sep-icon">\\V//</span>
         <span className="sep-line"></span>
       </div>
 
-      <div className="skills-header">
+      <div className="skills-header" data-aos="fade-down">
         <h2 className="skills-title">SKILLS</h2>
       </div>
 
       <div className="skills-container">
-        <h3>USING NOW:</h3>
+        <h3 data-aos="fade-right">USING NOW:</h3>
         <div className="skills-grid">
-          {skillsData.using.map(skill => (
-            <div className="skill-card" key={skill.name}>
-              <img src={skill.icon} alt={skill.name} />
-              <p>{skill.name}</p>
-            </div>
-          ))}
+          {renderSkillCards(skillsData.using)}
         </div>
 
-        <h3>LEARNING:</h3>
+        <h3 data-aos="fade-right" data-aos-delay="200">LEARNING:</h3>
         <div className="skills-grid">
-          {skillsData.learning.map(skill => (
-            <div className="skill-card" key={skill.name}>
-              <img src={skill.icon} alt={skill.name} />
-              <p>{skill.name}</p>
-            </div>
-          ))}
+          {renderSkillCards(skillsData.learning)}
         </div>
 
-        <h3>OTHER SKILLS:</h3>
+        <h3 data-aos="fade-right" data-aos-delay="400">OTHER SKILLS:</h3>
         <div className="skills-grid">
-          {skillsData.other.map(skill => (
-            <div className="skill-card" key={skill.name}>
-              {skill.icon.startsWith('http') ? <img src={skill.icon} alt={skill.name} /> : <span className="flag-emoji">{skill.icon}</span>}
-              <p>{skill.name}</p>
-            </div>
-          ))}
+          {renderSkillCards(skillsData.other)}
         </div>
       </div>
     </section>

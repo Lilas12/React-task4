@@ -8,6 +8,9 @@ import Portfolio from './components/Portfolio';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 const LoadingScreen = () => (
   <div className="loading-container">
     <div className="loading-content">
@@ -18,17 +21,21 @@ const LoadingScreen = () => (
 );
 
 function App() {
-
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: false,
+      easing: 'ease-in-out',
+    });
+
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 1500);
 
     return () => clearTimeout(timer);
   }, []);
-
 
   if (isLoading) {
     return <LoadingScreen />;
@@ -37,12 +44,31 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <Hero />
-      <ItBerries />
-      <About />
-      <Skills />
-      <Portfolio />
-      <Contact />
+
+      <div data-aos="fade-zoom-in">
+        <Hero />
+      </div>
+
+      <div data-aos="fade-right">
+        <ItBerries />
+      </div>
+
+      <div data-aos="fade-left">
+        <About />
+      </div>
+
+      <div data-aos="zoom-in">
+        <Skills />
+      </div>
+
+      <div data-aos="fade-up">
+        <Portfolio />
+      </div>
+
+      <div data-aos="fade-up">
+        <Contact />
+      </div>
+
       <Footer />
     </div>
   );
