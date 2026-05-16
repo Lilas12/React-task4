@@ -1,6 +1,6 @@
 /* src/components/Navbar.css */
 .navbar {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -178,6 +178,9 @@
   border: 1px solid rgba(255, 255, 255, 0.4);
   transform: translateY(-4px);
 }
+
+/* --- RESPONSIVE MEDIA QUERIES --- */
+
 @media (max-width: 850px) {
   .nav-links-desktop {
     display: none;
@@ -185,11 +188,17 @@
   .hamburger {
     display: flex;
   }
+
+  /* LÖSNING HÄR: Vi ändrar till static eller relative och lägger till en marginal neråt */
   .navbar {
+    position: relative; /* Gör att den tar upp plats i dokumentflödet på mobilen */
     height: 70px;
+    margin-bottom: 40px; /* Denna marginal trycker ner Tomasz och hans text från toppen! */
   }
+
+  /* Eftersom navbaren blir relativ behövs inte scrolled-klassen på mobilen */
   .navbar.scrolled {
-    height: 60px;
+    height: 70px;
   }
   .nav-container {
     padding: 0 25px;
@@ -198,8 +207,13 @@
     font-size: 1.5rem;
   }
 }
+
 @media (max-width: 576px) {
   .navbar {
+    height: 60px;
+    margin-bottom: 30px; /* Säkerställer bra marginal på små mobiler */
+  }
+  .navbar.scrolled {
     height: 60px;
   }
   .nav-container {
@@ -223,6 +237,7 @@
     font-size: 0.95rem;
   }
 }
+
 body.no-scroll {
   overflow: hidden;
 }
